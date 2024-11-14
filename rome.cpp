@@ -1,19 +1,72 @@
-// rome.cpp : Este archivo contiene la función "main". La ejecución del programa comienza y termina ahí.
-//
-
 #include <iostream>
+#include <string>
+using namespace std;
+
+class building {
+protected:
+    string name;
+public:
+    building(string nom) : name(nom) {};
+
+    string getname() {
+        return name;
+    }
+};
+
+class warehouse : building {
+private:
+    int wood, rocks, wheat;
+public:
+    warehouse(string n, int wo, int ro, int wh) : building(n), wood(wo), rocks(ro), wheat(wh) {};
+
+    void printresources() {
+        cout << "wood: " << wood << endl;
+        cout << "rocks: " << rocks <<endl;
+        cout << "wheat: " << wheat <<endl;
+    }
+};
+
+class house : building {
+private:
+    int floors, inhabitants, servants;
+public:
+    house(string n, int fl, int in, int se) : building(n), floors(fl), inhabitants(in), servants(se) {};
+
+    void printhouse() {
+        cout << "floors: " << floors << endl;
+        cout << "inhabitants: " << inhabitants << endl;
+        cout << "servants: " << servants << endl;
+    }
+};
+
+class temple : building {
+private:
+    string god;
+    int priests;
+public:
+    temple(string n, string g, int pr) : building(n), god(g), priests(pr) {};
+
+    void printhouse() {
+        cout << "god: " << god << endl;
+        cout << "priests: " << priests << endl;
+    }
+};
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    building bw("magatzem");
+    warehouse w(bw.getname(), 40, 50, 30);
+    building bh("casa");
+    house h(bh.getname(), 4, 3, 8);
+    building bt("temple");
+    temple t(bt.getname(), "deu", 7);
+
+    cout << bw.getname() << endl;
+    w.printresources();
+    cout << endl;
+    cout << bh.getname() << endl;
+    h.printhouse();
+    cout << endl;
+    cout << bt.getname() << endl;
+    t.printhouse();
 }
-
-// Ejecutar programa: Ctrl + F5 o menú Depurar > Iniciar sin depurar
-// Depurar programa: F5 o menú Depurar > Iniciar depuración
-
-// Sugerencias para primeros pasos: 1. Use la ventana del Explorador de soluciones para agregar y administrar archivos
-//   2. Use la ventana de Team Explorer para conectar con el control de código fuente
-//   3. Use la ventana de salida para ver la salida de compilación y otros mensajes
-//   4. Use la ventana Lista de errores para ver los errores
-//   5. Vaya a Proyecto > Agregar nuevo elemento para crear nuevos archivos de código, o a Proyecto > Agregar elemento existente para agregar archivos de código existentes al proyecto
-//   6. En el futuro, para volver a abrir este proyecto, vaya a Archivo > Abrir > Proyecto y seleccione el archivo .sln
